@@ -18,6 +18,9 @@ node {
     }
 
     stage('Test app') {
-        sh './bin/google-test-example1'
+        testEnv.inside {
+            sh './bin/google-test-example1'
+            sh 'gcovr . --xml'
+        }
     }
 }

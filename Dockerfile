@@ -7,7 +7,8 @@ RUN apt install -y \
 build-essential \
 make \
 cmake \
-git
+git \
+gcovr
 
 RUN mkdir /workspace
 WORKDIR /workspace
