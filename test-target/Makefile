@@ -26,7 +26,7 @@ CFLAGS= $(DEFINE) $(INCDIR) $(PROFILE)
 CC=gcc
 AR=ar
 MKDIR=mkdir
-
+RM=rm
 # ---------------------------------------------------------------------
 
 all: $(TARGET)

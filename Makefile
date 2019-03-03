@@ -28,7 +28,7 @@ BINS=$(patsubst $(SRCDIR)/%.$(SRC_SUFFIX),$(BINDIR)/%,$(SRCS))
 # ---------------------------------------------------------------------
 GOOGLE_TEST_ROOT=$(ROOTDIR)/googletest
 
-GOOGLE_TEST_LIBDIR=$(GOOGLE_TEST_ROOT)/lib
+GOOGLE_TEST_LIBDIR=$(GOOGLE_TEST_ROOT)/build/lib
 GOOGLE_TEST_LIB=gtest
 GOOGLE_TEST_MAIN_LIB=gtest_main
 GOOGLE_MOCK_LIB=gmock
@@ -72,7 +72,7 @@ RM=rm
 
 all: $(TARGET)
 
-$(TARGET): $(TEST_TARGET_LIBDIR)/$(TEST_TARGET_LIB_FILE) $(BINDIR) $(BINS)
+$(TARGET): $(GOOGLE_TEST_LIBDIR)/lib$(GOOGLE_TEST_LIB).a $(TEST_TARGET_LIBDIR)/$(TEST_TARGET_LIB_FILE) $(OBJDIR) $(BINDIR) $(BINS)
 	$(TOUCH) $@
 
 $(BINDIR)/%: $(OBJDIR)/%.o
@@ -90,9 +90,13 @@ $(OBJDIR):
 $(TEST_TARGET_LIBDIR)/$(TEST_TARGET_LIB_FILE):
 	$(CD) $(TEST_TARGET_DIR) && $(MAKE) all
 	
+$(GOOGLE_TEST_LIBDIR)/lib$(GOOGLE_TEST_LIB).a: 
+	git clone https://github.com/google/googletest.git
+	$(MKDIR) -p googletest/build
+	$(CD) googletest/build && cmake -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++ .. && make
 
 # ---------------------------------------------------------------------
 
 clean: 
 	$(CD) $(TEST_TARGET_DIR) && $(MAKE) clean
-	$(RM) -f $(BINS) $(OBJS) $(TARGET)
+	$(RM) -fr $(BINDIR) $(OBJDIR) $(TARGET)
