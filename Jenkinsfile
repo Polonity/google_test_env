@@ -2,6 +2,7 @@ node {
     def testEnv
 
     stage('Clone repository') {
+        cleanWs()
         checkout scm
     }
 
@@ -11,14 +12,11 @@ node {
 
     testEnv.inside {
         stage('Build app') {
-            sh 'cd google_test_env'
             sh 'make'
         }
         stage('Test app') {
             sh './bin/google-test-example1'
             sh ' gcovr . --xml --output=cover.xml'
-            sh 'pwd'
-            sh 'ls -al '
             cobertura (
                 autoUpdateHealth: false,
                 autoUpdateStability: false,
