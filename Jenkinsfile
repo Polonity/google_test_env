@@ -11,7 +11,7 @@ node {
 
     stage('Build app') {
         testEnv.inside {
-            sh 'git clonehttps://github.com/Polonity/google_test_env.git'
+            sh 'git clone https://github.com/Polonity/google_test_env.git'
             sh 'cd google_test_env'
             sh 'make'
         }
