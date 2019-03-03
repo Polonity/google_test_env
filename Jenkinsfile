@@ -17,10 +17,12 @@ node {
         stage('Test app') {
             sh './bin/google-test-example1'
             sh ' gcovr . --xml --output=cover.xml'
+            sh 'pwd'
+            sh 'ls -al '
             cobertura (
                 autoUpdateHealth: false,
                 autoUpdateStability: false,
-                coberturaReportFile: 'google_test_env/cover.xml',
+                coberturaReportFile: 'cover.xml',
                 conditionalCoverageTargets: '70, 0, 0',
                 failUnhealthy: false,
                 failUnstable: false,
