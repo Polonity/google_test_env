@@ -9,17 +9,14 @@ node {
         testEnv = docker.build("mtan/googletest:${env.BUILD_ID}")
     }
 
-    stage('Build app') {
-        testEnv.inside {
+    testEnv.inside {
+        stage('Build app') {
             sh 'cd google_test_env'
             sh 'make'
         }
-    }
-
-    stage('Test app') {
-        testEnv.inside {
+        stage('Test app') {
             sh './bin/google-test-example1'
-            sh 'gcovr . --xml'
+            sh ' gcovr . --xml --output=test.xml'
         }
     }
 }
