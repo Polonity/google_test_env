@@ -19,9 +19,11 @@ This tutorial is supported until completing example jenkins jobs.
     ![](image/2020-05-04-00-10-22.png)
 
 4. Setting below:
-    definition      :   Pipeline script from SCM
-    SCM             :   git
-    repository URL  :   https://github.com/Polonity/google_test_env.git
+    name            | value
+    ----------------|---------------------------------------
+    definition      |   Pipeline script from SCM
+    SCM             |   git
+    repository URL  |   https://github.com/Polonity/google_test_env.git
 
     ![](image/2020-05-04-00-53-46.png)
 
