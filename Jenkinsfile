@@ -7,7 +7,7 @@ node {
     }
 
     stage('Build image') {
-        testEnv = docker.build("mtan/googletest:${env.BUILD_ID}")
+        testEnv = docker.build("mtan/googletest")
     }
 
     testEnv.inside {
