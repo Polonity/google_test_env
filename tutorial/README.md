@@ -27,7 +27,7 @@ This tutorial is supported until completing example jenkins jobs.
 
     ![](image/2020-05-04-00-53-46.png)
 
-5. Install a plugins
+5. Install requred plugins
    - docker pipeline
    - cobertura
 
