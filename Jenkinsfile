@@ -31,5 +31,8 @@ node {
                 zoomCoverageChart: false
             )
         }
+        stage('Static analyze'){
+            // any code
+        }
     }
 }
